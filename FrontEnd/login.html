@@ -9,11 +9,12 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/login.css">
     <title>Login</title>
 </head>
 <body>
     <header class="header">
-        <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+        <a href="index.html"><h1>Sophie Bluel <span>Architecte d'intérieur</span></h1></a>
         <nav>
             <ul>
                 <li>projets</li>
@@ -24,22 +25,24 @@
         </nav>
     </header>
     <main class="main">
-        <article class="logIn">
-            <div class="logInHeader">
-                <h3>Log In</h3>
+        <section class="log">
+            <div class="logIn">
+                <div class="logInHeader">
+                    <h2>Log In</h2>
+                </div>
+                <form action="get" class="logInForm">
+                    <label for="email">E-mail</label><br>
+                    <input type="email" id="email" name="email" required><br>
+                    
+                    <label for="password">Mot de passe</label><br>
+                    <input type="password" id="password" name="password" required><br>
+                    
+                    <input type="submit" value="Se connecter">
+                    
+                    <a href="#">Mot de passe oublié</a>
+                </form>
             </div>
-            <form action="get" class="logInForm">
-                <label for="email">E-mail</label><br>
-                <input type="email" id="email" name="email" required><br>
-              
-                <label for="password">Mot de passe</label><br>
-                <input type="password" id="password" name="password" required><br>
-              
-                <input type="submit" value="Se connecter"><br>
-
-                <a href="#">Mot de passe oublié</a>
-            </form>
-        </article>
+        </section>
     </main>
 </body>
 </html>

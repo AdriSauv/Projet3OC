@@ -1,0 +1,48 @@
+body {
+    background: #FFFEF8;
+    color: #3D3D3D;
+}
+
+a {
+    color: #3D3D3D;
+}
+.log {
+    margin-top: 150px;
+}
+
+.logIn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.logInForm {
+    margin-top: 30px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logInForm a {
+    align-self: center;
+}
+
+#email, #password {
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
+    height: 50px;
+}
+
+.log input {
+    height: 35px;
+    font-size: 1em;
+    border: none;
+    box-shadow: 0px 4px 14px rgb(0 0 0 / 9%);
+}
+
+.log input:hover {
+    cursor: pointer;
+}

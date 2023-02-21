@@ -18,16 +18,12 @@ function generateProjects(project){
         imageElement.src = article.imageUrl;
         const titreElement = document.createElement("h5");
         titreElement.innerText = article.title;
-        const categoryElement = document.querySelector("p");
-        categoryElement.innerText = article.categoryId;
 
         // Rattache balise à section gallery
 
         sectionGallery.appendChild(projectArticle);
         projectArticle.appendChild(imageElement);
         projectArticle.appendChild(titreElement);
-        projectArticle.appendChild(categoryElement);
-
     }
 }
 

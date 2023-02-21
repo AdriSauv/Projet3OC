@@ -23,7 +23,7 @@ loginForm.addEventListener('submit', (event) => {
     })
     .then(response => {
       if (response.ok) {
-        alert("Identifiants valides");
+        window.location.href="index.html";
       } else {
         alert("Identifiants non valides");
       }

@@ -212,3 +212,8 @@ footer nav ul {
 	background-color: #1D6154;
 	cursor: pointer;
 }
+
+a {
+	text-decoration: none;
+	color: black;
+}

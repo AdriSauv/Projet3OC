@@ -28,3 +28,52 @@ function generateProjects(project){
 }
 
 generateProjects(project);
+
+function generateModalProjects(project){
+
+    for ( let i=0; i < project.length; i++){
+
+        const article = project[i];
+
+        // récupération de l'élément du DOM qui accueillera la gallery
+        const sectionGallery = document.querySelector(".modalContentImg");
+        // Création d'une balise qui sera dédiée à un article
+        const projectArticle = document.createElement("article");
+        // Création Balises
+        const imageElement = document.createElement("img");
+        imageElement.src = article.imageUrl;
+        const titreElement = document.createElement("p");
+        titreElement.innerText = "éditer";
+
+        // Rattache balise à section gallery
+
+        sectionGallery.appendChild(projectArticle);
+        projectArticle.appendChild(imageElement);
+        projectArticle.appendChild(titreElement);
+    }
+}
+
+// AFFICHAGE MODALE
+
+// récupérer modale et bouton modifier
+
+const modal = document.getElementById('modal');
+const modifyBtn = document.getElementById('showModal');
+
+// affichage modale quand click sur modifier
+
+modifyBtn.addEventListener('click', function(){
+  modal.classList.add('visible');
+  generateModalProjects(project);
+});
+
+// fermeture de la modale quand appui sur X
+
+const closeBtn = document.querySelector('.closeBtn');
+closeBtn.addEventListener('click', function(){
+  modal.classList.remove('visible');
+});
+
+// Cacher la modale par défaut
+
+modal.classList.remove('visible');

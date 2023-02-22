@@ -1,5 +1,5 @@
 function showLoggedInContent() {
-    console.log('hello');
+
     let authToken = window.localStorage.getItem('authToken');
     if (authToken) {
       let hiddenElements = document.querySelectorAll('.hidden');
@@ -7,7 +7,7 @@ function showLoggedInContent() {
         hiddenElements[i].classList.remove('hidden');
       }
       let loginStatus = document.getElementById('loginStatus');
-      loginStatus.innerHTML = '<a href="login.html" class="link" id="loginStatus"><li>log out</li></a>';
+      loginStatus.innerHTML = '<a href="login.html" class="link" id="logOut"><li>log out</li></a>';
     }
 }
 

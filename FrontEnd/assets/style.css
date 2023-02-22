@@ -56,7 +56,7 @@ body {
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 130px 0 50px 0;
 }
 section {
 	margin: 50px 0
@@ -242,3 +242,33 @@ figure a {
 	margin-right: 15px;
 }
 
+/* design baniere */
+
+#banner {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: black;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 60px;
+}
+
+#banner button {
+	border-radius: 60px;
+	padding: 10px 20px;
+	margin-left: 15px;
+}
+
+#banner a {
+	color: white;
+}
+#banner button:hover {
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+	cursor: pointer;
+}

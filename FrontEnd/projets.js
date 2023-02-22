@@ -79,6 +79,14 @@ closeBtn.addEventListener('click', function(){
   modal.classList.remove('visible');
 });
 
+// fermeture modale quand appui à côté
+
+window.addEventListener('click', function(e){
+  if (e.target === modal) {
+    modal.classList.remove('visible');
+  }
+})
+
 // Cacher la modale par défaut
 
 modal.classList.remove('visible');

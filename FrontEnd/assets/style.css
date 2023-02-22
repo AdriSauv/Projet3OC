@@ -263,6 +263,7 @@ figure a {
 	border-radius: 60px;
 	padding: 10px 20px;
 	margin-left: 15px;
+	border: none;
 }
 
 #banner a {

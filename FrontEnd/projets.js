@@ -37,11 +37,13 @@ function generateModalProjects(project){
 
         // récupération de l'élément du DOM qui accueillera la gallery
         const sectionGallery = document.querySelector(".modalContentImg");
+
         // Création d'une balise qui sera dédiée à un article
         const projectArticle = document.createElement("article");
         // Création Balises
         const imageElement = document.createElement("img");
         imageElement.src = article.imageUrl;
+        imageElement.classList.add("modalImg")
         const titreElement = document.createElement("p");
         titreElement.innerText = "éditer";
 
@@ -50,6 +52,8 @@ function generateModalProjects(project){
         sectionGallery.appendChild(projectArticle);
         projectArticle.appendChild(imageElement);
         projectArticle.appendChild(titreElement);
+
+        
     }
 }
 
@@ -64,6 +68,7 @@ const modifyBtn = document.getElementById('showModal');
 
 modifyBtn.addEventListener('click', function(){
   modal.classList.add('visible');
+  document.querySelector(".modalContentImg").innerHTML = "";
   generateModalProjects(project);
 });
 

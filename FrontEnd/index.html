@@ -10,8 +10,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script type="module" src="projets.js"></script>
-	<script type="module" src="loginIndex.js"></script>
+
 </head>
 <body>
 	<div class="hidden" id="banner">
@@ -45,8 +44,24 @@
 	<section id="portfolio">
 		<div class="myProjects">
 			<h2>Mes Projets </h2>
-			<a href="#" class="hidden"><i class="fa-regular fa-pen-to-square"></i>modifier</a>
+			<a class="hidden" id="showModal"><i class="fa-regular fa-pen-to-square"></i>modifier</a>
 		</div>
+		<!-- Début Création Modale -->
+		<aside class="modal" id="modal">
+			<div class="" id="modalContent">
+				<div class="modalContentHeader">
+					<h2>Galerie Photo</h2>
+					<button class="closeBtn">&times;</button>
+				</div>
+				<div class="modalContentImg">
+				</div>
+				<div class="modalContentFooter">
+					<input class="addPicture" type="submit" value="Ajouter une photo">
+					<a href="" class="deleteBtn">Supprimer la galerie</a>
+				</div>
+			</div>
+		</aside>
+		<!-- FIN Création Modale -->
 		<div class="filters">
 			<button class="btnAll">Tous</button>
 			<button class="btnObjects">Objets</button>
@@ -77,5 +92,7 @@
 		</ul>
 	</nav>
 </footer>
+<script type="module" src="projets.js"></script>
+<script type="module" src="loginIndex.js"></script>
 </body>
 </html>

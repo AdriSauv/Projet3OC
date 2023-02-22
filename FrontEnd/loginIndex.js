@@ -14,7 +14,11 @@ function showLoggedInContent() {
 
 showLoggedInContent();
 
-// récupère bouton modifer et la modale
+
+// AFFICHAGE MODALE
+
+
+// récupérer modale et bouton modifier
 
 const modal = document.getElementById('modal');
 const modifyBtn = document.getElementById('showModal');

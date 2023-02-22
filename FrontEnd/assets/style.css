@@ -327,3 +327,19 @@ figure a {
 .deleteBtn {
 	color: #D65353;
 }
+
+.modalContentHeaderBtn {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.closeBtn {
+	background-color: white;
+	border: none;
+	font-size: 20px;
+}
+
+.closeBtn:hover {
+	cursor: pointer;
+}

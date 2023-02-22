@@ -29,16 +29,3 @@ loginForm.addEventListener('submit', (event) => {
       }
     })
 });
-
-
-const logOut = document.getElementById("logOut");
-
-function logOut(){
-  window.localStorage.removeItem("authToken");
-  window.location.href='http://127.0.0.1:5500/FrontEnd/login.html';
-}
-
-loginStatus.addEventListener("click", (e) => {
-  e.preventDefault();
-  logOut();
-})

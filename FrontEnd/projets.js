@@ -50,6 +50,9 @@ function generateModalProjects(project){
         const deleteElement = document.createElement("button");
         deleteElement.classList.add('deleteImage');
         deleteElement.innerText = "x";
+        deleteElement.addEventListener('click', () => {
+          projectArticle.remove();
+        });
 
         const titreElement = document.createElement("p");
         titreElement.innerText = "éditer";

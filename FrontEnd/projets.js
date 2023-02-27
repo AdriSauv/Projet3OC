@@ -51,7 +51,8 @@ function generateModalProjects(project){
         deleteElement.classList.add('deleteImage');
         deleteElement.innerText = "x";
         deleteElement.addEventListener('click', () => {
-          projectArticle.remove();
+          sectionGallery.removeChild(projectArticle);
+          project.splice(i, 1);
         });
 
         const titreElement = document.createElement("p");

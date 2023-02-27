@@ -40,10 +40,17 @@ function generateModalProjects(project){
 
         // Création d'une balise qui sera dédiée à un article
         const projectArticle = document.createElement("article");
+        projectArticle.classList.add("articleWrapper");
+
         // Création Balises
         const imageElement = document.createElement("img");
         imageElement.src = article.imageUrl;
-        imageElement.classList.add("modalImg")
+        imageElement.classList.add("modalImg");
+
+        const deleteElement = document.createElement("button");
+        deleteElement.classList.add('deleteImage');
+        deleteElement.innerText = "x";
+
         const titreElement = document.createElement("p");
         titreElement.innerText = "éditer";
 
@@ -52,7 +59,7 @@ function generateModalProjects(project){
         sectionGallery.appendChild(projectArticle);
         projectArticle.appendChild(imageElement);
         projectArticle.appendChild(titreElement);
-
+        projectArticle.appendChild(deleteElement);
         
     }
 }

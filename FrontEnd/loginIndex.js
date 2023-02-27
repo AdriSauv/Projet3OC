@@ -8,7 +8,7 @@ function showLoggedInContent() {
         hiddenElements[i].classList.remove('hidden');
       }
       let loginStatus = document.getElementById('loginStatus');
-      loginStatus.innerHTML = '<a href="login.html" class="link" id="logOut"><li>log out</li></a>';
+      loginStatus.innerHTML = '<a href="login.html" class="link" id="logOut"><li>logout</li></a>';
     }
 }
 

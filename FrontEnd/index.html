@@ -17,86 +17,86 @@
 		<p><a href="#"><i class="fa-regular fa-pen-to-square"></i>Mode édition</p></a>
 		<button>publier les changements</button>
 	</div>
-<header>
-	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-	<nav>
-		<ul>
-			<a href="index.html" class="link"><li>projets</li></a>
-			<a href="contact.html" class="link"><li>contact</li></a>
-			<a href="login.html" class="link" id="loginStatus"><li>login</li></a>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-		</ul>
-	</nav>
-</header>
-<main>
-	<section id="introduction">
-		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
-			<a href="#" class="hidden"><i class="fa-regular fa-pen-to-square"></i>modifier</a>
-		</figure>
-		<article>
-			<h2>Designer d'espace</h2>
-			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
-			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
-		</article>
-	</section>
-	<section id="portfolio">
-		<div class="myProjects">
-			<h2>Mes Projets </h2>
-			<a class="hidden" id="showModal"><i class="fa-regular fa-pen-to-square"></i>modifier</a>
-		</div>
-		<!-- Début Création Modale -->
-		<aside class="modal" id="modal">
-			<div class="" id="modalContent">
-				<div class="modalContentHeader">
-					<div class="modalContentHeaderBtn">
-						<button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
-					</div>
-					<div class="modalContentHeaderTitle">
-						<h2>Galerie Photo</h2>
-					</div>
-				</div>
-				<div class="modalContentImg">
-				</div>
-				<div class="modalContentFooter">
-					<input class="addPicture" type="submit" value="Ajouter une photo">
-					<a href="" class="deleteBtn">Supprimer la galerie</a>
-				</div>
+	<header>
+		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+		<nav>
+			<ul>
+				<a href="index.html" class="link"><li>projets</li></a>
+				<a href="contact.html" class="link"><li>contact</li></a>
+				<a href="login.html" class="link" id="loginStatus"><li>login</li></a>
+				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<section id="introduction">
+			<figure>
+				<img src="./assets/images/sophie-bluel.png" alt="">
+				<a href="#" class="hidden"><i class="fa-regular fa-pen-to-square"></i>modifier</a>
+			</figure>
+			<article>
+				<h2>Designer d'espace</h2>
+				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
+				<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
+				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
+			</article>
+		</section>
+		<section id="portfolio">
+			<div class="myProjects">
+				<h2>Mes Projets </h2>
+				<a class="hidden" id="showModal"><i class="fa-regular fa-pen-to-square"></i>modifier</a>
 			</div>
-		</aside>
+			<!-- Début Création Modale -->
+			<aside class="modal" id="modal">
+				<div class="" id="modalContent">
+					<div class="modalContentHeader">
+						<div class="modalContentHeaderBtn">
+							<button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
+						</div>
+						<div class="modalContentHeaderTitle">
+							<h2>Galerie Photo</h2>
+						</div>
+					</div>
+					<div class="modalContentImg">
+					</div>
+					<div class="modalContentFooter">
+						<input class="addPicture" type="submit" value="Ajouter une photo">
+						<a href="" class="deleteGallery">Supprimer la galerie</a>
+					</div>
+				</div>
+			</aside>
 		<!-- FIN Création Modale -->
-		<div class="filters">
-			<button class="btnAll">Tous</button>
-			<button class="btnObjects">Objets</button>
-			<button class="btnAppartments">Appartements</button>
-			<button class="btnHotels">Hôtels & restaurants</button>
-		</div>
-		<div class="gallery">
-		</div>
-	</section>
-	<section id="contact">
-		<h2>Contact</h2>
-		<p>Vous avez un projet ? Discutons-en !</p>
-		<form action="#" method="post">
-			<label for="name">Nom</label>
-			<input type="text" name="name" id="name">
-			<label for="email">Email</label>
-			<input type="email" name="email" id="email">
-			<label for="message">Message</label>
-			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
-		</form>
-	</section>
-</main>
-<footer>
-	<nav>
-		<ul>
-			<li>Mentions Légales</li>
-		</ul>
-	</nav>
-</footer>
-<script type="module" src="projets.js"></script>
-<script type="module" src="loginIndex.js"></script>
+			<div class="filters">
+				<button class="btnAll">Tous</button>
+				<button class="btnObjects">Objets</button>
+				<button class="btnAppartments">Appartements</button>
+				<button class="btnHotels">Hôtels & restaurants</button>
+			</div>
+			<div class="gallery">
+			</div>
+		</section>
+		<section id="contact">
+			<h2>Contact</h2>
+			<p>Vous avez un projet ? Discutons-en !</p>
+			<form action="#" method="post">
+				<label for="name">Nom</label>
+				<input type="text" name="name" id="name">
+				<label for="email">Email</label>
+				<input type="email" name="email" id="email">
+				<label for="message">Message</label>
+				<textarea name="message" id="message" cols="30" rows="10"></textarea>
+				<input type="submit" value="Envoyer">
+			</form>
+		</section>
+	</main>
+	<footer>
+		<nav>
+			<ul>
+				<li>Mentions Légales</li>
+			</ul>
+		</nav>
+	</footer>
+	<script type="module" src="projets.js"></script>
+	<script type="module" src="loginIndex.js"></script>
 </body>
 </html>

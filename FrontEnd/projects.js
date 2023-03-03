@@ -54,7 +54,7 @@ if (localStorage.getItem("token")) {
 // MODAL 
 
 const showModal = document.getElementById('showModal');
-const modalContentImg = document.querySelector('.modalContentImg');
+
 
 showModal.addEventListener('click', async (event) => {
   event.preventDefault();
@@ -67,7 +67,11 @@ showModal.addEventListener('click', async (event) => {
     }
   });
 
+  const modalContentImg = document.querySelector('.modalContentImg');
   modalContentImg.innerHTML = '';
+
+  const modalFooter = document.querySelector('.modalContentFooter');
+  
 
   articles.forEach(article => {
     const projectArticle = document.createElement("article");
@@ -119,3 +123,47 @@ window.addEventListener('click', function(e){
     modal.classList.remove('visible');
   }
 })
+
+
+// 2e Partie modale
+
+const addPictureButton = document.querySelector('.addPicture');
+
+addPictureButton.addEventListener('click', function(){
+
+    const modalHeader = document.querySelector('.modalContentHeader');
+    const modalBody = document.querySelector('.modalContentImg');
+    const modalFooter = document.querySelector('.modalContentFooter');
+    
+    modalHeader.innerHTML = '<h2>Ajout Photo<h2>';
+    modalFooter.innerHTML ='<input class="uploadPicture" type="submit" value="Valider">';
+    modalBody.innerHTML ='';
+
+    const formWrap = document.createElement('div');
+    modalBody.appendChild(formWrap);
+
+    const form = document.createElement('form');
+    form.classList.add('formUploadImg');
+    formWrap.appendChild(form);
+    
+    // create a span element for the icon
+    const iconSpan = document.createElement('span');
+    iconSpan.classList.add('fas', 'fa-image', 'iconSpan');
+    form.appendChild(iconSpan);
+
+    // add a line break
+    form.appendChild(document.createElement('br'));
+
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.name = 'image';
+    form.appendChild(fileInput);
+
+    form.appendChild(document.createElement('br'));
+
+    const restrictionImg = document.createElement('p');
+    restrictionImg.innerText = 'jpg, png : 4mo max';
+    restrictionImg.classList.add('restrictionImg');
+    form.appendChild(restrictionImg);
+
+});

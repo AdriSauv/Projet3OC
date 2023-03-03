@@ -166,4 +166,40 @@ addPictureButton.addEventListener('click', function(){
     restrictionImg.classList.add('restrictionImg');
     form.appendChild(restrictionImg);
 
+    const titleLabel = document.createElement('label');
+    titleLabel.textContent = 'Titre';
+    formWrap.appendChild(titleLabel);
+
+    formWrap.appendChild(document.createElement('br'));
+  
+    const titleInput = document.createElement('input');
+    titleInput.type = 'text';
+    titleInput.name = 'title';
+    titleInput.classList.add('titleInput');
+    formWrap.appendChild(titleInput);
+
+    formWrap.appendChild(document.createElement('br'));
+  
+    const categoryLabel = document.createElement('label');
+    categoryLabel.textContent = 'Categorie';
+    formWrap.appendChild(categoryLabel);
+
+    formWrap.appendChild(document.createElement('br'));
+  
+    const categorySelect = document.createElement('select');
+    categorySelect.name = 'category';
+    formWrap.appendChild(categorySelect);
+
+    formWrap.appendChild(document.createElement('br'));
+  
+    fetchData('http://localhost:5678/api/categories')
+      .then(categories => {
+        categories.forEach(category => {
+          const option = document.createElement('option');
+          option.value = category.id;
+          option.textContent = category.name;
+          categorySelect.appendChild(option);
+        });
+    });
+
 });

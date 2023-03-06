@@ -306,6 +306,11 @@ figure a {
 	justify-content: center;
 }
 
+.modalContentButton {
+	display: flex;
+	justify-content: flex-end;
+}
+
 .modalContentFooter {
 	display: flex;
 	flex-direction: column;
@@ -525,4 +530,19 @@ select {
 	border-bottom: 1px solid #B3B3B3;
 	margin: 30px auto 30px;
 	width: 420px;
+}
+
+.secondModalButtons {
+	display: flex;
+	justify-content: space-between;
+}
+
+.previousBtn {
+	font-size: 20px;
+	border: none;
+	background-color: white;
+}
+
+.previousBtn:hover {
+	cursor: pointer;
 }

@@ -309,8 +309,8 @@ figure a {
 .modalContentFooter {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
+	margin-top: -20px;
 }
 
 .addPicture,
@@ -355,7 +355,6 @@ figure a {
 	gap: 7px;
 	width: 65%;
 	margin: auto;
-	border-bottom: 1px solid #B3B3B3;
 }
 
 .modalImg {
@@ -377,13 +376,6 @@ figure a {
 	color: white;
 	border: none;
 	cursor: pointer;
-}
-
-
-/* Design Footer Modale*/
-
-.footer {
-    margin-top: auto;
 }
 
 /* design 2nd modale */
@@ -462,14 +454,22 @@ input[type="file"]::before {
 	justify-content: center;
 }
 
+.secondModalContentHeader h3 {
+	display: flex;
+	justify-content: center;
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 26px;
+}
+
 .uploadImgContainer {
 	display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
 	background-color: #E8F1F7;
-	width: 80%;
-	margin: auto;
+	margin: 30px auto;
 }
 
 .fa-image {
@@ -492,8 +492,8 @@ input[type="file"]::before {
 }
 
 #uploadForm {
-	margin: 30px auto;
-	width: 80%;
+	margin: auto;
+	width: 65%;
 }
 
 #uploadForm input[type="text"],
@@ -519,4 +519,10 @@ select {
 	font-size: 14px;
 	margin: 0 auto;
   	display: block;
+}
+
+.greyLine {
+	border-bottom: 1px solid #B3B3B3;
+	margin: 30px auto 30px;
+	width: 420px;
 }

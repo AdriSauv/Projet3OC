@@ -124,6 +124,42 @@ fileInput.addEventListener('change', () => {
 });
 
 
+// Upload to API
+
+// Add an event listener to the form submit button
+uploadButton.addEventListener('click', async function(event) {
+  event.preventDefault();
+
+  // Check if user is authorized with token
+  const authToken = localStorage.getItem('authToken');
+  if (!authToken) {
+    // Handle error here
+    console.error('User is not authorized');
+    return;
+  }
+
+  // Get form data
+  const form = document.getElementById('uploadForm');
+  const formData = new FormData(form);
+
+  // Send form data to API
+  const url = 'http://localhost:5678/api/works';
+  const options = {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${authToken}`
+    },
+    body: formData
+  };
+  const response = await fetchData(url, options);
+
+  // Handle response from API
+  // ...
+});
+
+
+
 
 
 const modalCloseBtn = document.querySelector('#modal .closeBtn');

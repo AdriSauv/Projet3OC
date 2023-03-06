@@ -55,6 +55,7 @@
 					</div>
 					<div class="modalContentBody">
 					</div>
+					<div class="greyLine"></div>
 					<div class="modalContentFooter">
 						<input class="addPicture" type="submit" value="Ajouter une photo">
 						<a href="#" class="deleteGallery">Supprimer la galerie</a>
@@ -68,9 +69,10 @@
 				<button class="previousBtn" id="previousBtn"><i class="fa-solid fa-arrow-left"></i></button>
 				<button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
 				<div class="secondModalContentHeader">
-					<h2>Ajouter Photo</h2>
+					<h3>Ajouter Photo</h3>
 				</div>
 				<div class="secondModalContentBody">
+					<form id="uploadForm">
 					<div class="uploadImgContainer">
 						<div class="uploadImgContainerImg">
 							<i class="fa-regular fa-image"></i>
@@ -82,7 +84,6 @@
 							<p>jpg, png : 4mo max</p>
 						</div>
 					</div>
-					<form id="uploadForm">
 						<label for="title">Titre</label><br>
 						<input type="text" id="title" class="title" recquired><br>
 
@@ -90,6 +91,7 @@
 						<select id="category" name="category">
 							<option value="" selected disabled hidden></option>
 						</select><br>
+						<div class="greyLine"></div>
 						<button id="uploadImg" type="submit">Valider</button>
 					</form>
 				</div>

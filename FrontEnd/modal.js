@@ -103,7 +103,25 @@ function updateButtonState() {
   }
 }
 
+// Image preview
+const uploadImgContainer = document.querySelector('.uploadImgContainer');
 
+fileInput.addEventListener('change', () => {
+    const file = fileInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.addEventListener('load', () => {
+        const previewImg = document.createElement('img');
+        previewImg.src = reader.result;
+        previewImg.style.maxWidth = '130px';
+        uploadImgContainer.innerHTML = '';
+        uploadImgContainer.appendChild(previewImg);
+      });
+      reader.readAsDataURL(file);
+    } else {
+      uploadImgContainer.innerHTML = '';
+    }
+});
 
 
 

@@ -48,20 +48,51 @@
 			</div>
 			<!-- Début Création Modale -->
 			<aside class="modal" id="modal">
-				<div class="" id="modalContent">
+				<div id="modalContent">
 					<button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
 					<div class="modalContentHeader">
 						<h2>Galerie Photo</h2>
 					</div>
-					<div class="modalContentImg">
+					<div class="modalContentBody">
 					</div>
 					<div class="modalContentFooter">
 						<input class="addPicture" type="submit" value="Ajouter une photo">
-						<a href="" class="deleteGallery">Supprimer la galerie</a>
+						<a href="#" class="deleteGallery">Supprimer la galerie</a>
 					</div>
 				</div>
 			</aside>
 		<!-- FIN Création Modale -->
+		<!-- Début Deuxième modale -->
+		<aside id="secondModal">
+			<div id="secondModalContent">
+				<button class="previousBtn"><i class="fa-solid fa-arrow-left"></i></button>
+				<button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
+				<div class="secondModalContentHeader">
+					<h2>Ajouter Photo</h2>
+				</div>
+				<div class="secondModalContentBody">
+					<div class="uploadImgContainer">
+						<div class="uploadImgContainerImg">
+							<i class="fa-regular fa-image"></i>
+						</div>
+						<div class="uploadPictureBtn">
+							<input type="file" value="+ Ajouter photo">
+						</div>
+						<div class="restrictionImg">
+							<p>jpg, png : 4mo max</p>
+						</div>
+					</div>
+					<form id="uploadForm">
+						<label for="title">Titre</label><br>
+						<input type="text" id="title" class="title" recquired><br>
+
+						<label for="category">Catégorie</label><br>
+						<input class="uploadImg" type="submit" value="Valider">
+					</form>
+				</div>
+			</div>
+		</aside>
+		<!-- FIN Deuxième modale -->
 			<div class="filters">
 				<button class="btnAll">Tous</button>
 				<button class="btnObjects">Objets</button>
@@ -94,5 +125,6 @@
 	</footer>
 	<script type="module" src="fetch.js"></script>
 	<script type="module" src="projects.js"></script>
+	<script type ="module" src="modal.js"></script>
 </body>
 </html>

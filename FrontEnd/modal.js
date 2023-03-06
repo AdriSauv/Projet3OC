@@ -87,7 +87,7 @@ addPictureButton.addEventListener('click', function(){
 // Bouton Valider VERT/GRIS
 
 // Select the input elements
-const fileInput = document.getElementById('fileInput');
+const fileInput = document.getElementById('image');
 const titleInput = document.getElementById('title');
 const categorySelect = document.getElementById('category');
 const uploadButton = document.getElementById('uploadImg');

@@ -1,56 +1,60 @@
 import { fetchData } from "./fetch.js";
 
+// Display Modal on click
+
 const showModal = document.getElementById('showModal');
 
 
 showModal.addEventListener('click', async (event) => {
-  event.preventDefault();
+    event.preventDefault();
+    // Vérifie si bien connecté
+    const token = localStorage.getItem('token');
 
-  const token = localStorage.getItem('token');
+    const articles = await fetchData('http://localhost:5678/api/works', {
+        headers: {Authorization: `Bearer ${token}`}
+});
 
-  const articles = await fetchData('http://localhost:5678/api/works', {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
-
-  const modalContentImg = document.querySelector('.modalContentBody');
-  modalContentImg.innerHTML = '';
+    const modalContentImg = document.querySelector('.modalContentBody');
+    // Refresh modal body to not have duplicates everytime we open the modal
+    modalContentImg.innerHTML = '';
   
 
-  articles.forEach(article => {
-    const projectArticle = document.createElement("article");
-    projectArticle.classList.add("articleWrapper");
-  
-    const img = document.createElement('img');
-    img.setAttribute('src', article.imageUrl);
-    img.setAttribute('data-id', article.id);
-    img.classList.add('modalImg');
-  
-    const deleteBtn = document.createElement('button');
-    deleteBtn.innerHTML = '<i class="fas fa-trash-can"></i>';
-    deleteBtn.classList.add('deleteImage');
-    deleteBtn.addEventListener('click', async () => {
-      const token = localStorage.getItem('token');
-      await fetchData(`http://localhost:5678/api/works/${article.id}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`
+    articles.forEach(article => {
+        const projectArticle = document.createElement("article");
+        projectArticle.classList.add("articleWrapper");
+    
+        const img = document.createElement('img');
+        img.setAttribute('src', article.imageUrl);
+        img.setAttribute('data-id', article.id);
+        img.classList.add('modalImg');
+    
+        const deleteBtn = document.createElement('button');
+        deleteBtn.innerHTML = '<i class="fas fa-trash-can"></i>';
+        deleteBtn.classList.add('deleteImage');
+
+        // Delete image from API when button is clicked
+
+        deleteBtn.addEventListener('click', async () => {
+        const token = localStorage.getItem('token');
+        await fetchData(`http://localhost:5678/api/works/${article.id}`, {
+            method: 'DELETE',
+            headers: {
+            Authorization: `Bearer ${token}`
+            }
+        });
+        projectArticle.remove();
+        // Delete Image from the main page using the id
+        const mainImg = document.querySelector(`[data-id="${article.id}"]`);
+        if (mainImg) {
+            mainImg.parentNode.remove();
         }
-      });
-      projectArticle.remove();
-      const mainImg = document.querySelector(`[data-id="${article.id}"]`);
-      if (mainImg) {
-        mainImg.parentNode.remove();
-      }
-    });
-  
+        });
     modalContentImg.appendChild(projectArticle);
     projectArticle.appendChild(img);
     projectArticle.appendChild(deleteBtn);
   });
 
-  document.getElementById('modal').classList.add('visible');
+    document.getElementById('modal').classList.add('visible');
 });
 
 
@@ -65,11 +69,14 @@ addPictureButton.addEventListener('click', function(){
     document.getElementById('secondModal').classList.add('visible');
 
     const categorySelect = document.getElementById('category');
-
+    // Récupérer les catégories via l' API et les insérer dans la balise select
     fetchData('http://localhost:5678/api/categories')
     .then(categories => {
+        categorySelect.innerHTML = "";
         categories.forEach(category => {
+
         const option = document.createElement('option');
+
         option.value = category.id;
         option.textContent = category.name;
         categorySelect.appendChild(option);
@@ -122,43 +129,6 @@ fileInput.addEventListener('change', () => {
       uploadImgContainer.innerHTML = '';
     }
 });
-
-
-// Upload to API
-
-// Add an event listener to the form submit button
-uploadButton.addEventListener('click', async function(event) {
-  event.preventDefault();
-
-  // Check if user is authorized with token
-  const authToken = localStorage.getItem('authToken');
-  if (!authToken) {
-    // Handle error here
-    console.error('User is not authorized');
-    return;
-  }
-
-  // Get form data
-  const form = document.getElementById('uploadForm');
-  const formData = new FormData(form);
-
-  // Send form data to API
-  const url = 'http://localhost:5678/api/works';
-  const options = {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      Authorization: `Bearer ${authToken}`
-    },
-    body: formData
-  };
-  const response = await fetchData(url, options);
-
-  // Handle response from API
-  // ...
-});
-
-
 
 
 

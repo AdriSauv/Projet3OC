@@ -64,31 +64,63 @@ addPictureButton.addEventListener('click', function(){
     document.getElementById('modal').classList.remove('visible');
     document.getElementById('secondModal').classList.add('visible');
 
+    const categorySelect = document.getElementById('category');
 
-
-//   const categorySelect = document.createElement('select');
-//   categorySelect.name = 'category';
-//   form.appendChild(categorySelect);
- 
-//   fetchData('http://localhost:5678/api/categories')
-//     .then(categories => {
-//       categories.forEach(category => {
-//         const option = document.createElement('option');
-//         option.value = category.id;
-//         option.textContent = category.name;
-//         categorySelect.appendChild(option);
-//       });
-//   });
+    fetchData('http://localhost:5678/api/categories')
+    .then(categories => {
+        categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category.id;
+        option.textContent = category.name;
+        categorySelect.appendChild(option);
+        });
+    });
 });
 
+// Bouton Valider VERT/GRIS
+
+// Select the input elements
+const fileInput = document.getElementById('fileInput');
+const titleInput = document.getElementById('title');
+const categorySelect = document.getElementById('category');
+const uploadButton = document.getElementById('uploadImg');
+
+// Add event listeners to the input elements
+fileInput.addEventListener('change', updateButtonState);
+titleInput.addEventListener('input', updateButtonState);
+categorySelect.addEventListener('change', updateButtonState);
+
+// Update the state of the upload button
+function updateButtonState() {
+  if (fileInput.value !== '' && titleInput.value !== '' && categorySelect.value !== '') {
+    uploadButton.style.backgroundColor = '#1D6154'; // Green color
+    uploadButton.style.color = '#fff !important';
+    uploadButton.disabled = false;
+  } else {
+    uploadButton.style.backgroundColor = '#A7A7A7'; // Grey color
+    uploadButton.style.color = '#fff !important';
+    uploadButton.disabled = true;
+  }
+}
 
 
 
-// fermeture de la modale quand appui sur X
 
-const closeBtn = document.querySelector('.closeBtn');
-closeBtn.addEventListener('click', function(){
-  modal.classList.remove('visible');
+
+
+const modalCloseBtn = document.querySelector('#modal .closeBtn');
+
+// Add an event listener to the close button for the first modal
+modalCloseBtn.addEventListener('click', function() {
+  document.getElementById('modal').classList.remove('visible');
+});
+
+// Select the close button for the second modal
+const secondModalCloseBtn = document.querySelector('#secondModal .closeBtn');
+
+// Add an event listener to the close button for the second modal
+secondModalCloseBtn.addEventListener('click', function() {
+  document.getElementById('secondModal').classList.remove('visible');
 });
 
 // fermeture modale quand appui à côté
@@ -101,3 +133,14 @@ window.addEventListener('click', function(e){
     secondModal.classList.remove('visible');
   }
 })
+
+// Select the "previousBtn" button
+const previousBtn = document.getElementById("previousBtn");
+
+// Add an event listener to the button
+previousBtn.addEventListener("click", () => {
+  // Hide the second modal
+  document.getElementById("secondModal").classList.remove('visible');
+  // Show the first modal
+  document.getElementById("modal").classList.add('visible');
+});

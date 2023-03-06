@@ -65,7 +65,7 @@
 		<!-- Début Deuxième modale -->
 		<aside id="secondModal">
 			<div id="secondModalContent">
-				<button class="previousBtn"><i class="fa-solid fa-arrow-left"></i></button>
+				<button class="previousBtn" id="previousBtn"><i class="fa-solid fa-arrow-left"></i></button>
 				<button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
 				<div class="secondModalContentHeader">
 					<h2>Ajouter Photo</h2>
@@ -87,7 +87,10 @@
 						<input type="text" id="title" class="title" recquired><br>
 
 						<label for="category">Catégorie</label><br>
-						<input class="uploadImg" type="submit" value="Valider">
+						<select id="category" name="category">
+							<option value="" selected disabled hidden></option>
+						</select><br>
+						<button id="uploadImg" type="submit">Valider</button>
 					</form>
 				</div>
 			</div>

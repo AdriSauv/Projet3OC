@@ -1,8 +1,13 @@
 import { fetchData } from "./fetch.js";
 
-const gallery = document.querySelector('.gallery');
+// select the gallery element
+const gallery = document.querySelector(".gallery");
 
-// fetch the articles from the API
+function logDetails(article) {
+  console.log(`Title: ${article.title}, ID: ${article.id}, Category: ${article.categoryId}`);
+}
+
+// fetch the articles and create the gallery
 fetchData("http://localhost:5678/api/works")
   .then(articles => {
     // loop through each article and create a gallery item for it
@@ -15,6 +20,7 @@ fetchData("http://localhost:5678/api/works")
       const image = document.createElement("img");
       image.src = article.imageUrl;
       galleryItem.appendChild(image);
+
       
       // create a title element for the article's title
       const title = document.createElement("h3");
@@ -22,23 +28,98 @@ fetchData("http://localhost:5678/api/works")
       galleryItem.appendChild(title);
       
       // hide the article's ID and category
-      const id = document.createElement("input");
-      id.type = "hidden";
-      id.value = article.id;
+      const id = document.createElement("p");
+      id.classList.add("hidden");
+      id.textContent = article.id;
       galleryItem.appendChild(id);
       
-      const category = document.createElement("input");
-      category.type = "hidden";
-      category.value = article.category;
+      const category = document.createElement("p");
+      category.classList.add("hidden");
+      category.classList.add("categoryId");
+      category.textContent = parseInt(article.categoryId);
       galleryItem.appendChild(category);
+
       
       // add the gallery item to the gallery
       gallery.appendChild(galleryItem);
+
+            
+      // add an event listener to the image element that logs the article's details
+      image.addEventListener("click", () => logDetails(article));
+
     });
   })
   .catch(error => {
     console.error(error);
 });
+
+
+const btnAll = document.querySelector(".btnAll");
+const btnObjects = document.querySelector(".btnObjects");
+const btnAppartments = document.querySelector(".btnAppartments");
+const btnHotels = document.querySelector(".btnHotels");
+
+btnAll.addEventListener("click", () => {
+  // show all gallery items
+  const galleryItems = document.querySelectorAll(".gallery-item");
+  galleryItems.forEach(item => {
+    item.style.display = "block";
+  });
+});
+
+btnObjects.addEventListener("click", () => {
+  const galleryItems = document.querySelectorAll(".gallery-item");
+  galleryItems.forEach(item => {
+    const categoryId = parseInt(item.querySelector(".categoryId").textContent);
+    console.log(categoryId);
+    if (categoryId === 1) {
+      item.style.display = "block";
+    } else {
+      item.style.display = "none";
+    }
+  });
+});
+
+btnAppartments.addEventListener("click", () => {
+  const galleryItems = document.querySelectorAll(".gallery-item");
+  galleryItems.forEach(item => {
+    const categoryId = parseInt(item.querySelector(".categoryId").textContent);
+    console.log(categoryId);
+    if (categoryId === 2) {
+      item.style.display = "block";
+    } else {
+      item.style.display = "none";
+    }
+  });
+})
+
+btnHotels.addEventListener("click", () => {
+  const galleryItems = document.querySelectorAll(".gallery-item");
+  galleryItems.forEach(item => {
+    const categoryId = parseInt(item.querySelector(".categoryId").textContent);
+    console.log(categoryId);
+    if (categoryId === 3) {
+      item.style.display = "block";
+    } else {
+      item.style.display = "none";
+    }
+  });
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 const hiddenElements = document.querySelectorAll(".hidden");

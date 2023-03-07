@@ -2,7 +2,6 @@ function fetchUpload() {
   const form = document.getElementById("uploadForm");
   const fileInput = document.getElementById("image");
   const titleInput = document.getElementById("title");
-  const categoryInput = document.getElementById("category");
 
   // Get the authorization token from localStorage
   const token = localStorage.getItem("token");
@@ -25,19 +24,19 @@ function fetchUpload() {
         Authorization: `Bearer ${token}`
       }
     })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log(data);
-        // Do something with the response data
-      })
-      .catch(error => {
-        console.error("There was a problem with the fetch request:", error);
-      });
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      // Do something with the response data
+    })
+    .catch(error => {
+      console.error("There was a problem with the fetch request:", error);
+    });
   });
 }
 

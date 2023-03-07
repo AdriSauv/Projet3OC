@@ -19,40 +19,56 @@ showModal.addEventListener('click', async (event) => {
     modalContentImg.innerHTML = '';
   
 
-    articles.forEach(article => {
-        const projectArticle = document.createElement("article");
-        projectArticle.classList.add("articleWrapper");
-    
-        const img = document.createElement('img');
-        img.setAttribute('src', article.imageUrl);
-        img.setAttribute('data-id', article.id);
-        img.classList.add('modalImg');
-    
-        const deleteBtn = document.createElement('button');
-        deleteBtn.innerHTML = '<i class="fas fa-trash-can"></i>';
-        deleteBtn.classList.add('deleteImage');
+    // Find the first article in the array
+    const firstArticle = articles[0];
 
-        // Delete image from API when button is clicked
+  articles.forEach((article, index) => {
+    const projectArticle = document.createElement("article");
+    projectArticle.classList.add("articleWrapper");
 
-        deleteBtn.addEventListener('click', async () => {
-        const token = localStorage.getItem('token');
-        await fetchData(`http://localhost:5678/api/works/${article.id}`, {
-            method: 'DELETE',
-            headers: {
-            Authorization: `Bearer ${token}`
-            }
-        });
-        projectArticle.remove();
-        // Delete Image from the main page using the id
-        const mainImg = document.querySelector(`[data-id="${article.id}"]`);
-        if (mainImg) {
-            mainImg.parentNode.remove();
+    const img = document.createElement('img');
+    img.setAttribute('src', article.imageUrl);
+    img.setAttribute('data-id', article.id);
+    img.classList.add('modalImg');
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.innerHTML = '<i class="fas fa-trash-can"></i>';
+    deleteBtn.classList.add('deleteImage');
+
+    const edit = document.createElement('p');
+    edit.textContent = 'éditer';
+
+    // Add another button only to the first image
+    if (article.id === firstArticle.id && index === 0) {
+      const moveBtn = document.createElement('button');
+      moveBtn.innerHTML = '<i class="fa-solid fa-up-down-left-right"></i>';
+      moveBtn.classList.add('moveBtn');
+      projectArticle.appendChild(moveBtn);
+    }
+
+    // Delete image from API when button is clicked
+    deleteBtn.addEventListener('click', async () => {
+      const token = localStorage.getItem('token');
+      await fetchData(`http://localhost:5678/api/works/${article.id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-        });
-    modalContentImg.appendChild(projectArticle);
-    projectArticle.appendChild(img);
-    projectArticle.appendChild(deleteBtn);
-  });
+      });
+      projectArticle.remove();
+      // Delete Image from the main page using the id
+      const mainImg = document.querySelector(`[data-id="${article.id}"]`);
+      if (mainImg) {
+        mainImg.parentNode.remove();
+      }
+    });
+
+  modalContentImg.appendChild(projectArticle);
+  projectArticle.appendChild(img);
+  projectArticle.appendChild(deleteBtn);
+  projectArticle.appendChild(edit);
+});
+
 
     document.getElementById('modal').classList.add('visible');
 });

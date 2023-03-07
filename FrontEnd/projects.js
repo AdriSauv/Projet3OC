@@ -143,5 +143,5 @@ if (localStorage.getItem("token")) {
     banner.style.display = 'flex';
     filters.style.display = 'none';
     login.innerHTML = '<a href="login.html" class="link" id="logout"><li>logout</li></a>'
-    header.classList.add('header.logged');
+    header.classList.add('header');
 }

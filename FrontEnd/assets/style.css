@@ -405,6 +405,19 @@ figure a {
 	color: white;
 	border: none;
 	cursor: pointer;
+	font-size: smaller;
+}
+
+.moveBtn {
+	position: absolute;
+	top: 5px;
+	right: 30px;
+	padding: 2px 5px;
+	background-color: black;
+	color: white;
+	border: none;
+	cursor: pointer;
+	font-size: smaller;
 }
 
 /* design 2nd modale */

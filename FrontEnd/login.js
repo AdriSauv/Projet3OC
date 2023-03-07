@@ -2,7 +2,6 @@
 
 const loginForm = document.getElementById('loginForm');
 
-console.log(loginForm); 
 
 loginForm.addEventListener('submit', (event) => {
     event.preventDefault(); // Empêche la page de recharger sur le onClick
@@ -32,3 +31,9 @@ loginForm.addEventListener('submit', (event) => {
       }
     })
 });
+
+// Check if the current page is the login page
+if (window.location.pathname === "/FrontEnd/login.html") {
+  // Add the 'active' class to the link
+  document.getElementById("loginStatus").classList.add("bold");
+}

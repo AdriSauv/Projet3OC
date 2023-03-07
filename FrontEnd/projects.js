@@ -106,6 +106,21 @@ btnHotels.addEventListener("click", () => {
   });
 })
 
+const buttons = document.querySelectorAll('.filters button');
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    buttons.forEach(btn => {
+      btn.classList.remove('active');
+      btn.style.backgroundColor = '';
+      btn.style.color = '#1D6154';
+    });
+
+    button.classList.add('active');
+    button.style.backgroundColor = '#1D6154';
+    button.style.color = 'white';
+  });
+});
 
 
 

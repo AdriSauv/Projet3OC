@@ -106,13 +106,16 @@ btnHotels.addEventListener("click", () => {
   });
 })
 
+
+// Design filtre
+
 const buttons = document.querySelectorAll('.filters button');
 
 buttons.forEach(button => {
   button.addEventListener('click', () => {
     buttons.forEach(btn => {
       btn.classList.remove('active');
-      btn.style.backgroundColor = '';
+      btn.style.backgroundColor = 'white';
       btn.style.color = '#1D6154';
     });
 
@@ -124,25 +127,21 @@ buttons.forEach(button => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+// Apparition des Elements de la page lorsqu'il y a un token
 
 
 const hiddenElements = document.querySelectorAll(".hidden");
 const banner = document.getElementById('banner');
+const filters = document.querySelector('.filters');
+const login = document.getElementById('loginStatus');
+const header = document.querySelector('header');
 
 if (localStorage.getItem("token")) {
     hiddenElements.forEach(element => {
         element.classList.remove("hidden");
     });
     banner.style.display = 'flex';
+    filters.style.display = 'none';
+    login.innerHTML = '<a href="login.html" class="link" id="logout"><li>logout</li></a>'
+    header.classList.add('header.logged');
 }

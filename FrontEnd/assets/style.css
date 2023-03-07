@@ -188,6 +188,16 @@ footer nav ul {
 	margin: 2em
 }
 
+article h2 {
+	margin-top: 20px;
+}
+
+/* Design projet */
+
+.myProjects {
+	margin-bottom: 30px;
+}
+
 /* Design Filtres */
 
 .filters {
@@ -201,8 +211,6 @@ footer nav ul {
 .filters button {
 	font-family: 'Syne';
     font-weight: 700;
-	color: #1D6154;
-	background-color: white;
 	padding: 7px 15px;
     text-align: center;
     border-radius: 60px;
@@ -216,6 +224,11 @@ footer nav ul {
 .active {
 	color: white;
 	background-color: #1D6154;
+}
+
+.inactive {
+	color: #1D6154;
+	background-color: white;
 }
 
 a {
@@ -250,15 +263,20 @@ figure a {
 /* design baniere */
 
 #banner {
-	position: fixed;
-	top: 0;
-	left: 0;
 	background-color: black;
-	width: 100%;
-	color: white;
-	align-items: center;
-	justify-content: center;
-	height: 50px;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    margin-bottom: -25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.header {
+	margin-top: 80px;
 }
 
 #banner button {
@@ -271,6 +289,7 @@ figure a {
 #banner a {
 	color: white;
 }
+
 #banner button:hover {
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 	cursor: pointer;

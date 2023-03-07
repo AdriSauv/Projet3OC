@@ -37,3 +37,9 @@ if (window.location.pathname === "/FrontEnd/login.html") {
   // Add the 'active' class to the link
   document.getElementById("loginStatus").classList.add("bold");
 }
+
+const login = document.getElementById('loginStatus');
+
+if (localStorage.getItem("token")) {
+    login.innerHTML = '<a href="login.html" class="link" id="logout"><li>logout</li></a>'
+}

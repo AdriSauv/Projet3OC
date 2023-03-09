@@ -2,58 +2,56 @@ import { fetchData } from "./fetch.js";
 
 // Display Modal on click
 
-const showModal = document.getElementById('showModal');
+const showModal = document.getElementById("showModal");
 
+showModal.addEventListener("click", async (event) => {
+  event.preventDefault();
+  // Vérifie si bien connecté
+  const token = localStorage.getItem("token");
 
-showModal.addEventListener('click', async (event) => {
-    event.preventDefault();
-    // Vérifie si bien connecté
-    const token = localStorage.getItem('token');
+  const articles = await fetchData("http://localhost:5678/api/works", {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 
-    const articles = await fetchData('http://localhost:5678/api/works', {
-        headers: {Authorization: `Bearer ${token}`}
-});
+  const modalContentImg = document.querySelector(".modalContentBody");
+  // Refresh modal body to not have duplicates everytime we open the modal
+  modalContentImg.innerHTML = "";
 
-    const modalContentImg = document.querySelector('.modalContentBody');
-    // Refresh modal body to not have duplicates everytime we open the modal
-    modalContentImg.innerHTML = '';
-  
-
-    // Find the first article in the array
-    const firstArticle = articles[0];
+  // Find the first article in the array
+  const firstArticle = articles[0];
 
   articles.forEach((article, index) => {
     const projectArticle = document.createElement("article");
     projectArticle.classList.add("articleWrapper");
 
-    const img = document.createElement('img');
-    img.setAttribute('src', article.imageUrl);
-    img.setAttribute('data-id', article.id);
-    img.classList.add('modalImg');
+    const img = document.createElement("img");
+    img.setAttribute("src", article.imageUrl);
+    img.setAttribute("data-id", article.id);
+    img.classList.add("modalImg");
 
-    const deleteBtn = document.createElement('button');
+    const deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = '<i class="fas fa-trash-can"></i>';
-    deleteBtn.classList.add('deleteImage');
+    deleteBtn.classList.add("deleteImage");
 
-    const edit = document.createElement('p');
-    edit.textContent = 'éditer';
+    const edit = document.createElement("p");
+    edit.textContent = "éditer";
 
     // Add another button only to the first image
     if (article.id === firstArticle.id && index === 0) {
-      const moveBtn = document.createElement('button');
+      const moveBtn = document.createElement("button");
       moveBtn.innerHTML = '<i class="fa-solid fa-up-down-left-right"></i>';
-      moveBtn.classList.add('moveBtn');
+      moveBtn.classList.add("moveBtn");
       projectArticle.appendChild(moveBtn);
     }
 
     // Delete image from API when button is clicked
-    deleteBtn.addEventListener('click', async () => {
-      const token = localStorage.getItem('token');
+    deleteBtn.addEventListener("click", async () => {
+      const token = localStorage.getItem("token");
       await fetchData(`http://localhost:5678/api/works/${article.id}`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
       projectArticle.remove();
       // Delete Image from the main page using the id
@@ -63,116 +61,111 @@ showModal.addEventListener('click', async (event) => {
       }
     });
 
-  modalContentImg.appendChild(projectArticle);
-  projectArticle.appendChild(img);
-  projectArticle.appendChild(deleteBtn);
-  projectArticle.appendChild(edit);
+    modalContentImg.appendChild(projectArticle);
+    projectArticle.appendChild(img);
+    projectArticle.appendChild(deleteBtn);
+    projectArticle.appendChild(edit);
+  });
+
+  document.getElementById("modal").classList.add("visible");
 });
-
-
-    document.getElementById('modal').classList.add('visible');
-});
-
-
 
 // 2e Partie modale
 
-const addPictureButton = document.querySelector('.addPicture');
+const addPictureButton = document.querySelector(".addPicture");
 
-addPictureButton.addEventListener('click', function(){
+addPictureButton.addEventListener("click", function () {
+  document.getElementById("modal").classList.remove("visible");
+  document.getElementById("secondModal").classList.add("visible");
 
-    document.getElementById('modal').classList.remove('visible');
-    document.getElementById('secondModal').classList.add('visible');
+  const categorySelect = document.getElementById("category");
+  // Récupérer les catégories via l' API et les insérer dans la balise select
+  fetchData("http://localhost:5678/api/categories").then((categories) => {
+    categorySelect.innerHTML = "";
+    categories.forEach((category) => {
+      const option = document.createElement("option");
 
-    const categorySelect = document.getElementById('category');
-    // Récupérer les catégories via l' API et les insérer dans la balise select
-    fetchData('http://localhost:5678/api/categories')
-    .then(categories => {
-        categorySelect.innerHTML = "";
-        categories.forEach(category => {
-
-        const option = document.createElement('option');
-
-        option.value = category.id;
-        option.textContent = category.name;
-        categorySelect.appendChild(option);
-        });
+      option.value = category.id;
+      option.textContent = category.name;
+      categorySelect.appendChild(option);
     });
+  });
 });
 
 // Bouton Valider VERT/GRIS
 
 // Select the input elements
-const fileInput = document.getElementById('image');
-const titleInput = document.getElementById('title');
-const categorySelect = document.getElementById('category');
-const uploadButton = document.getElementById('uploadImg');
+const fileInput = document.getElementById("image");
+const titleInput = document.getElementById("title");
+const categorySelect = document.getElementById("category");
+const uploadButton = document.getElementById("uploadImg");
 
 // Add event listeners to the input elements
-fileInput.addEventListener('change', updateButtonState);
-titleInput.addEventListener('input', updateButtonState);
-categorySelect.addEventListener('change', updateButtonState);
+fileInput.addEventListener("change", updateButtonState);
+titleInput.addEventListener("input", updateButtonState);
+categorySelect.addEventListener("change", updateButtonState);
 
 // Update the state of the upload button
 function updateButtonState() {
-  if (fileInput.value !== '' && titleInput.value !== '' && categorySelect.value !== '') {
-    uploadButton.style.backgroundColor = '#1D6154'; // Green color
-    uploadButton.style.color = '#fff !important';
+  if (
+    fileInput.value !== "" &&
+    titleInput.value !== "" &&
+    categorySelect.value !== ""
+  ) {
+    uploadButton.style.backgroundColor = "#1D6154"; // Green color
+    uploadButton.style.color = "#fff !important";
     uploadButton.disabled = false;
   } else {
-    uploadButton.style.backgroundColor = '#A7A7A7'; // Grey color
-    uploadButton.style.color = '#fff !important';
+    uploadButton.style.backgroundColor = "#A7A7A7"; // Grey color
+    uploadButton.style.color = "#fff !important";
     uploadButton.disabled = true;
   }
 }
 
 // Image preview
-const uploadImgContainer = document.querySelector('.uploadImgContainer');
+const uploadImgContainer = document.querySelector(".uploadImgContainer");
 
-fileInput.addEventListener('change', () => {
-    const file = fileInput.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.addEventListener('load', () => {
-        const previewImg = document.createElement('img');
-        previewImg.src = reader.result;
-        previewImg.style.maxWidth = '130px';
-        uploadImgContainer.innerHTML = '';
-        uploadImgContainer.appendChild(previewImg);
-      });
-      reader.readAsDataURL(file);
-    } else {
-      uploadImgContainer.innerHTML = '';
-    }
+fileInput.addEventListener("change", () => {
+  const file = fileInput.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      const previewImg = document.createElement("img");
+      previewImg.src = reader.result;
+      previewImg.style.maxWidth = "130px";
+      uploadImgContainer.innerHTML = "";
+      uploadImgContainer.appendChild(previewImg);
+    });
+    reader.readAsDataURL(file);
+  } else {
+    uploadImgContainer.innerHTML = "";
+  }
 });
 
-
-
-const modalCloseBtn = document.querySelector('#modal .closeBtn');
+const modalCloseBtn = document.querySelector("#modal .closeBtn");
 
 // Add an event listener to the close button for the first modal
-modalCloseBtn.addEventListener('click', function() {
-  document.getElementById('modal').classList.remove('visible');
+modalCloseBtn.addEventListener("click", function () {
+  document.getElementById("modal").classList.remove("visible");
 });
 
 // Select the close button for the second modal
-const secondModalCloseBtn = document.querySelector('#secondModal .closeBtn');
+const secondModalCloseBtn = document.querySelector("#secondModal .closeBtn");
 
 // Add an event listener to the close button for the second modal
-secondModalCloseBtn.addEventListener('click', function() {
-  document.getElementById('secondModal').classList.remove('visible');
+secondModalCloseBtn.addEventListener("click", function () {
+  document.getElementById("secondModal").classList.remove("visible");
 });
 
 // fermeture modale quand appui à côté
 
-window.addEventListener('click', function(e){
+window.addEventListener("click", function (e) {
   if (e.target === modal) {
-    modal.classList.remove('visible');
+    modal.classList.remove("visible");
+  } else if (e.target === secondModal) {
+    secondModal.classList.remove("visible");
   }
-  else if (e.target === secondModal) {
-    secondModal.classList.remove('visible');
-  }
-})
+});
 
 // Select the "previousBtn" button
 const previousBtn = document.getElementById("previousBtn");
@@ -180,7 +173,7 @@ const previousBtn = document.getElementById("previousBtn");
 // Add an event listener to the button
 previousBtn.addEventListener("click", () => {
   // Hide the second modal
-  document.getElementById("secondModal").classList.remove('visible');
+  document.getElementById("secondModal").classList.remove("visible");
   // Show the first modal
-  document.getElementById("modal").classList.add('visible');
+  document.getElementById("modal").classList.add("visible");
 });

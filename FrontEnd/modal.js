@@ -1,4 +1,5 @@
 import { fetchData } from "./fetch.js";
+import { generateWorks } from "./projects.js";
 
 // Display Modal on click
 
@@ -30,6 +31,7 @@ showModal.addEventListener("click", async (event) => {
     img.classList.add("modalImg");
 
     const deleteBtn = document.createElement("button");
+    deleteBtn.type="button";
     deleteBtn.innerHTML = '<i class="fas fa-trash-can"></i>';
     deleteBtn.classList.add("deleteImage");
 
@@ -46,19 +48,25 @@ showModal.addEventListener("click", async (event) => {
 
     // Delete image from API when button is clicked
     deleteBtn.addEventListener("click", async () => {
+      
       const token = localStorage.getItem("token");
-      await fetchData(`http://localhost:5678/api/works/${article.id}`, {
+       await fetchData(`http://localhost:5678/api/works/${article.id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+
       projectArticle.remove();
       // Delete Image from the main page using the id
+
       const mainImg = document.querySelector(`[data-id="${article.id}"]`);
       if (mainImg) {
         mainImg.parentNode.remove();
       }
+      const gallery = document.querySelector('.gallery');
+      gallery.innerHTML ='';
+      generateWorks();
     });
 
     modalContentImg.appendChild(projectArticle);

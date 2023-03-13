@@ -10,6 +10,7 @@ function logDetails(article) {
 }
 
 // fetch the articles and create the gallery
+export function generateWorks(){ 
 fetchData("http://localhost:5678/api/works")
   .then((articles) => {
     // loop through each article and create a gallery item for it
@@ -50,6 +51,9 @@ fetchData("http://localhost:5678/api/works")
   .catch((error) => {
     console.error(error);
   });
+}
+
+generateWorks();
 
 // Filter System
 

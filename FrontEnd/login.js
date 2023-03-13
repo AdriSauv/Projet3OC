@@ -25,7 +25,7 @@ loginForm.addEventListener('submit', (event) => {
       if (response.token) {;
         // stocker le authToken
         localStorage.setItem('token', response.token);
-        window.location.href="index.html";
+        // window.location.href="index.html";
       } else {
         alert("Identifiants non valides");
       }

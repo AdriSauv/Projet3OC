@@ -50,7 +50,8 @@ showModal.addEventListener("click", async (event) => {
     deleteBtn.addEventListener("click", async () => {
       
       const token = localStorage.getItem("token");
-       await fetchData(`http://localhost:5678/api/works/${article.id}`, {
+      console.log('hello');
+       await fetch (`http://localhost:5678/api/works/${article.id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

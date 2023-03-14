@@ -10,47 +10,47 @@ function logDetails(article) {
 }
 
 // fetch the articles and create the gallery
-export function generateWorks(){ 
-fetchData("http://localhost:5678/api/works")
-  .then((articles) => {
-    // loop through each article and create a gallery item for it
-    articles.forEach((article) => {
-      // create a gallery item
-      const galleryItem = document.createElement("div");
-      galleryItem.classList.add("gallery-item");
+export function generateWorks() {
+  fetchData("http://localhost:5678/api/works")
+    .then((articles) => {
+      // loop through each article and create a gallery item for it
+      articles.forEach((article) => {
+        // create a gallery item
+        const galleryItem = document.createElement("div");
+        galleryItem.classList.add("gallery-item");
 
-      // create an image element for the article's image
-      const image = document.createElement("img");
-      image.src = article.imageUrl;
-      galleryItem.appendChild(image);
+        // create an image element for the article's image
+        const image = document.createElement("img");
+        image.src = article.imageUrl;
+        galleryItem.appendChild(image);
 
-      // create a title element for the article's title
-      const title = document.createElement("h3");
-      title.textContent = article.title;
-      galleryItem.appendChild(title);
+        // create a title element for the article's title
+        const title = document.createElement("h3");
+        title.textContent = article.title;
+        galleryItem.appendChild(title);
 
-      // hide the article's ID and category
-      const id = document.createElement("p");
-      id.classList.add("hidden");
-      id.textContent = article.id;
-      galleryItem.appendChild(id);
+        // hide the article's ID and category
+        const id = document.createElement("p");
+        id.classList.add("hidden");
+        id.textContent = article.id;
+        galleryItem.appendChild(id);
 
-      const category = document.createElement("p");
-      category.classList.add("hidden");
-      category.classList.add("categoryId");
-      category.textContent = parseInt(article.categoryId);
-      galleryItem.appendChild(category);
+        const category = document.createElement("p");
+        category.classList.add("hidden");
+        category.classList.add("categoryId");
+        category.textContent = parseInt(article.categoryId);
+        galleryItem.appendChild(category);
 
-      // add the gallery item to the gallery
-      gallery.appendChild(galleryItem);
+        // add the gallery item to the gallery
+        gallery.appendChild(galleryItem);
 
-      // add an event listener to the image element that logs the article's details
-      image.addEventListener("click", () => logDetails(article));
+        // add an event listener to the image element that logs the article's details
+        image.addEventListener("click", () => logDetails(article));
+      });
+    })
+    .catch((error) => {
+      console.error(error);
     });
-  })
-  .catch((error) => {
-    console.error(error);
-  });
 }
 
 generateWorks();
@@ -65,7 +65,10 @@ const btnHotels = document.querySelector(".btnHotels");
 function filterItems(categoryId) {
   const galleryItems = document.querySelectorAll(".gallery-item");
   galleryItems.forEach((item) => {
-    if (categoryId === 0 || parseInt(item.querySelector(".categoryId").textContent) === categoryId) {
+    if (
+      categoryId === 0 ||
+      parseInt(item.querySelector(".categoryId").textContent) === categoryId
+    ) {
       item.style.display = "block";
     } else {
       item.style.display = "none";

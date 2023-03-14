@@ -7,7 +7,7 @@ const showModal = document.getElementById("showModal");
 
 showModal.addEventListener("click", async (event) => {
   event.preventDefault();
-  // Vérifie si bien connecté
+
   const token = localStorage.getItem("token");
 
   const articles = await fetchData("http://localhost:5678/api/works", {
@@ -16,6 +16,7 @@ showModal.addEventListener("click", async (event) => {
 
   const modalContentImg = document.querySelector(".modalContentBody");
   // Refresh modal body to not have duplicates everytime we open the modal
+
   modalContentImg.innerHTML = "";
 
   // Find the first article in the array
@@ -31,7 +32,7 @@ showModal.addEventListener("click", async (event) => {
     img.classList.add("modalImg");
 
     const deleteBtn = document.createElement("button");
-    deleteBtn.type="button";
+    deleteBtn.type = "button";
     deleteBtn.innerHTML = '<i class="fas fa-trash-can"></i>';
     deleteBtn.classList.add("deleteImage");
 
@@ -48,10 +49,9 @@ showModal.addEventListener("click", async (event) => {
 
     // Delete image from API when button is clicked
     deleteBtn.addEventListener("click", async () => {
-      
       const token = localStorage.getItem("token");
-      console.log('hello');
-       await fetch (`http://localhost:5678/api/works/${article.id}`, {
+      console.log("hello");
+      await fetch(`http://localhost:5678/api/works/${article.id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -65,8 +65,8 @@ showModal.addEventListener("click", async (event) => {
       if (mainImg) {
         mainImg.parentNode.remove();
       }
-      const gallery = document.querySelector('.gallery');
-      gallery.innerHTML ='';
+      const gallery = document.querySelector(".gallery");
+      gallery.innerHTML = "";
       generateWorks();
     });
 
@@ -84,8 +84,16 @@ showModal.addEventListener("click", async (event) => {
 const addPictureButton = document.querySelector(".addPicture");
 
 addPictureButton.addEventListener("click", function () {
-  document.getElementById("modal").classList.remove("visible");
-  document.getElementById("secondModal").classList.add("visible");
+  document.getElementById("previousBtn").removeAttribute("style");
+  document.querySelector(".modalContentButton").style.justifyContent =
+    "space-between";
+  document.getElementById("header1").style.display = "none";
+  document.getElementById("header2").style.display = "flex";
+
+  document.querySelector(".modalContentBody").style.display = "none";
+  document.querySelector(".secondModalContentBody").removeAttribute("style");
+
+  document.querySelector(".modalContentFooter").style.display = "none";
 
   const categorySelect = document.getElementById("category");
   // Récupérer les catégories via l' API et les insérer dans la balise select
@@ -99,6 +107,22 @@ addPictureButton.addEventListener("click", function () {
       categorySelect.appendChild(option);
     });
   });
+});
+
+const previousBtn = document.getElementById("previousBtn");
+
+previousBtn.addEventListener("click", () => {
+  document.getElementById("previousBtn").style.display = "none";
+  header1.style.display = "block";
+  header2.style.display = "none";
+
+  document.querySelector(".modalContentBody").removeAttribute("style");
+  document.querySelector(".secondModalContentBody").style.display = "none";
+  document.querySelector(".modalContentButton").removeAttribute("style");
+
+  document.querySelector(".modalContentFooter").removeAttribute("style");
+
+  generateWorks();
 });
 
 // Bouton Valider VERT/GRIS
@@ -153,36 +177,26 @@ fileInput.addEventListener("change", () => {
 
 const modalCloseBtn = document.querySelector("#modal .closeBtn");
 
-// Add an event listener to the close button for the first modal
-modalCloseBtn.addEventListener("click", function () {
-  document.getElementById("modal").classList.remove("visible");
-});
+const modal = document.getElementById("modal");
 
-// Select the close button for the second modal
-const secondModalCloseBtn = document.querySelector("#secondModal .closeBtn");
+function resetModal() {
+  modal.classList.remove("visible");
+  document.getElementById("previousBtn").style.display = "none";
+  document.querySelector(".modalContentButton").style.justifyContent =
+    "flex-end";
+  document.getElementById("header1").style.display = "block";
+  document.getElementById("header2").style.display = "none";
+  document.querySelector(".modalContentBody").style.display = "flex";
+  document.querySelector(".secondModalContentBody").style.display = "none";
+  document.querySelector(".modalContentFooter").style.display = "flex";
+  document.getElementById("category").innerHTML =
+    '<option value="" selected disabled hidden></option>';
+}
 
-// Add an event listener to the close button for the second modal
-secondModalCloseBtn.addEventListener("click", function () {
-  document.getElementById("secondModal").classList.remove("visible");
-});
-
-// fermeture modale quand appui à côté
+modalCloseBtn.addEventListener("click", resetModal);
 
 window.addEventListener("click", function (e) {
   if (e.target === modal) {
-    modal.classList.remove("visible");
-  } else if (e.target === secondModal) {
-    secondModal.classList.remove("visible");
+    resetModal();
   }
-});
-
-// Select the "previousBtn" button
-const previousBtn = document.getElementById("previousBtn");
-
-// Add an event listener to the button
-previousBtn.addEventListener("click", () => {
-  // Hide the second modal
-  document.getElementById("secondModal").classList.remove("visible");
-  // Show the first modal
-  document.getElementById("modal").classList.add("visible");
 });

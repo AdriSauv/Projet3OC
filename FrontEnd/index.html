@@ -51,58 +51,47 @@
 			<aside class="modal" id="modal">
 				<div id="modalContent">
 					<div class="modalContentButton">
+						<button class="previousBtn" id="previousBtn" style="display: none;"><i class="fa-solid fa-arrow-left"></i></button>
 						<button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
 					</div>
 					<div class="modalContentHeader">
-						<h2>Galerie Photo</h2>
+						<h2 id="header1">Galerie Photo</h2>
+						<h3 id="header2"style="display: none;">Ajout Photo</h3>
 					</div>
 					<div class="modalContentBody">
 					</div>
-					<div class="greyLine"></div>
+					<div class="secondModalContentBody" style="display: none;">
+						<form id="uploadForm">
+							<div class="uploadImgContainer">
+								<div class="uploadImgContainerImg">
+									<i class="fa-regular fa-image"></i>
+								</div>
+								<div class="uploadPictureBtn">
+									<input type="file" id="image" value="+ Ajouter photo">
+								</div>
+								<div class="restrictionImg">
+									<p>jpg, png : 4mo max</p>
+								</div>
+							</div>
+							<label for="title">Titre</label><br>
+							<input type="text" id="title" class="title" recquired><br>
+		
+							<label for="category">Catégorie</label><br>
+							<select id="category" name="category">
+								<option value="" selected disabled hidden></option>
+							</select><br>
+							<div class="greyLine"></div>
+							<button id="uploadImg" type="submit">Valider</button>
+						</form>
+					</div>
 					<div class="modalContentFooter">
+						<div class="greyLine"></div>
 						<input class="addPicture" type="submit" value="Ajouter une photo">
 						<a href="#" class="deleteGallery">Supprimer la galerie</a>
 					</div>
 				</div>
 			</aside>
-		<!-- FIN Création Modale -->
-		<!-- Début Deuxième modale -->
-		<aside id="secondModal">
-			<div id="secondModalContent">
-				<div class="secondModalButtons">
-					<button class="previousBtn" id="previousBtn"><i class="fa-solid fa-arrow-left"></i></button>
-					<button class="closeBtn"><i class="fa-solid fa-xmark"></i></button>
-				</div>
-				<div class="secondModalContentHeader">
-					<h3>Ajout Photo</h3>
-				</div>
-				<div class="secondModalContentBody">
-					<form id="uploadForm">
-					<div class="uploadImgContainer">
-						<div class="uploadImgContainerImg">
-							<i class="fa-regular fa-image"></i>
-						</div>
-						<div class="uploadPictureBtn">
-							<input type="file" id="image" value="+ Ajouter photo">
-						</div>
-						<div class="restrictionImg">
-							<p>jpg, png : 4mo max</p>
-						</div>
-					</div>
-						<label for="title">Titre</label><br>
-						<input type="text" id="title" class="title" recquired><br>
-
-						<label for="category">Catégorie</label><br>
-						<select id="category" name="category">
-							<option value="" selected disabled hidden></option>
-						</select><br>
-						<div class="greyLine"></div>
-						<button id="uploadImg" type="submit">Valider</button>
-					</form>
-				</div>
-			</div>
-		</aside>
-		<!-- FIN Deuxième modale -->
+			<!-- FIN Création Modale -->
 			<div class="filters">
 				<button class="btnAll active">Tous</button>
 				<button class="btnObjects inactive">Objets</button>

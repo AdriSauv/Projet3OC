@@ -353,7 +353,7 @@ figure a {
 	font-family: 'Syne';
 }
 
-.modalContentHeaderBtn {
+.modalContentButton {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
@@ -491,7 +491,7 @@ input[type="file"]::before {
 	justify-content: center;
 }
 
-.secondModalContentHeader h3 {
+.modalContentHeader h3 {
 	display: flex;
 	justify-content: center;
 	font-family: 'Work Sans';

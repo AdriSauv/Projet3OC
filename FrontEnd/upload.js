@@ -1,8 +1,12 @@
 import { generateWorks } from "./projects.js";
+import { resetModal } from "./modal.js";
 
 const form = document.getElementById("uploadForm");
 const fileInput = document.getElementById("image");
 const titleInput = document.getElementById("title");
+
+const uploadImgContainer = document.querySelector(".uploadImgContainer");
+const originalUploadImgContainerContent = uploadImgContainer.innerHTML;
 
 // Get the authorization token from localStorage
 const token = localStorage.getItem("token");
@@ -20,8 +24,6 @@ form.addEventListener("submit", function (event) {
     parseInt(document.getElementById("category").value)
   );
 
-  console.log(formData);
-
   // Send the form data via a POST request using fetch()
   fetch("http://localhost:5678/api/works", {
     method: "POST",
@@ -33,15 +35,16 @@ form.addEventListener("submit", function (event) {
     .then((response) => {
       if (response.ok) {
         // Form was sent successfully, show a success message
-        alert("Form was sent successfully!");
+        console.log("Form was sent successfully!");
         const gallery = document.querySelector(".gallery");
         gallery.innerHTML = "";
         generateWorks();
         form.reset();
-        document.getElementById("modal").classList.remove("visible");
+        resetModal();
+        uploadImgContainer.innerHTML = originalUploadImgContainerContent;
       } else {
         // There was an error, show an error message
-        alert("There was an error sending the form.");
+        alert("The form was not filled correctly.");
       }
       return response.json();
     })

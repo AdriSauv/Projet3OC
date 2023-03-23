@@ -3,12 +3,6 @@ import { fetchData } from "./fetch.js";
 // select the gallery element
 const gallery = document.querySelector(".gallery");
 
-function logDetails(article) {
-  console.log(
-    `Title: ${article.title}, ID: ${article.id}, Category: ${article.categoryId}`
-  );
-}
-
 // fetch the articles and create the gallery
 export function generateWorks() {
   fetchData("http://localhost:5678/api/works")
@@ -44,8 +38,6 @@ export function generateWorks() {
         // add the gallery item to the gallery
         gallery.appendChild(galleryItem);
 
-        // add an event listener to the image element that logs the article's details
-        image.addEventListener("click", () => logDetails(article));
       });
     })
     .catch((error) => {

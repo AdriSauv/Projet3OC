@@ -50,7 +50,6 @@ showModal.addEventListener("click", async (event) => {
     // Delete image from API when button is clicked
     deleteBtn.addEventListener("click", async () => {
       const token = localStorage.getItem("token");
-      console.log("hello");
       await fetch(`http://localhost:5678/api/works/${article.id}`, {
         method: "DELETE",
         headers: {
@@ -179,7 +178,7 @@ const modalCloseBtn = document.querySelector("#modal .closeBtn");
 
 const modal = document.getElementById("modal");
 
-function resetModal() {
+export function resetModal() {
   modal.classList.remove("visible");
   document.getElementById("previousBtn").style.display = "none";
   document.querySelector(".modalContentButton").style.justifyContent =

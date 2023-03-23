@@ -192,6 +192,10 @@ article h2 {
 	margin-top: 20px;
 }
 
+.link #loginStatus {
+	font-weight: 700;
+}
+
 /* Design projet */
 
 .myProjects {
@@ -444,10 +448,7 @@ input[type="file"]::before {
 	padding: 8px 30px;
 	border-radius: 40px;
 	cursor: pointer;
-	font-weight: 500;
 	margin-left: 40px;
-	font-size: 14px;
-	
 	font-family: 'Work Sans';
 	font-style: normal;
 	font-weight: 500;

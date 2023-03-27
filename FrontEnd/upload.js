@@ -4,14 +4,14 @@ import { resetModal } from "./modal.js";
 const fileInput = document.getElementById('image');
 const titleInput = document.getElementById('title');
 const categorySelect = document.getElementById('category');
+const uploadButton = document.getElementById('uploadImg');
 
-fileInput.addEventListener('change', updateButtonState);
-titleInput.addEventListener('change', updateButtonState);
+
+fileInput.addEventListener('input', updateButtonState);
+titleInput.addEventListener('input', updateButtonState);
 categorySelect.addEventListener('change', updateButtonState);
 
 function updateButtonState() {
-
-  const uploadButton = document.getElementById('uploadImg');
 
   console.log("updateButtonState called");
   console.log("fileInput.value: ", fileInput.value);
@@ -35,11 +35,38 @@ function updateButtonState() {
   }
 }
 
+fileInput.addEventListener('change', function() {
+  const file = fileInput.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.addEventListener('load', function() {
+      preview.src = reader.result;
+      preview.style.display = 'block';
+    });
+    reader.readAsDataURL(file);
+  } else {
+    preview.src = '';
+    preview.style.display = 'none';
+  }
+});
 
 
+const previewImg = document.getElementById("preview");
+const uploadImgContainerImg = document.querySelector(".uploadImgContainerImg");
+const uploadPictureBtn = document.querySelector(".uploadPictureBtn");
+const restrictionImg = document.querySelector(".restrictionImg");
 
-
-
+previewImg.addEventListener("load", function() {
+  if (previewImg.src) {
+    uploadImgContainerImg.style.display = "none";
+    uploadPictureBtn.querySelector("input").style.display = "none";
+    restrictionImg.style.display = "none";
+  } else {
+    uploadImgContainerImg.style.display = "block";
+    uploadPictureBtn.querySelector("input").style.display = "block";
+    restrictionImg.style.display = "block";
+  }
+});
 
 
 
@@ -82,6 +109,13 @@ form.addEventListener("submit", function (event) {
         generateWorks();
         form.reset();
         fileInput.value = "";
+        previewImg.src = "";
+        previewImg.style.display = "none";
+        uploadImgContainerImg.style.display = "block";
+        uploadPictureBtn.querySelector("input").style.display = "block";
+        restrictionImg.style.display = "block";
+        uploadButton.style.backgroundColor = "#A7A7A7"; // Grey color
+        uploadButton.disabled = true;
         resetModal();
       } else {
         // There was an error, show an error message

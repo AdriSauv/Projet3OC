@@ -1,11 +1,53 @@
 import { generateWorks } from "./projects.js";
 import { resetModal } from "./modal.js";
-import { resetUploadImgContainer } from "./modal.js";
-import { updateButtonState } from "./modal.js";
+
+const fileInput = document.getElementById('image');
+const titleInput = document.getElementById('title');
+const categorySelect = document.getElementById('category');
+
+fileInput.addEventListener('change', updateButtonState);
+titleInput.addEventListener('change', updateButtonState);
+categorySelect.addEventListener('change', updateButtonState);
+
+function updateButtonState() {
+
+  const uploadButton = document.getElementById('uploadImg');
+
+  console.log("updateButtonState called");
+  console.log("fileInput.value: ", fileInput.value);
+  console.log("titleInput.value: ", titleInput.value);
+  console.log("categorySelect.value: ", categorySelect.value);
+
+  if (
+    fileInput.value !== "" &&
+    titleInput.value !== "" &&
+    categorySelect.value !== ""
+  ) {
+    uploadButton.style.backgroundColor = "#1D6154"; // Green color
+    uploadButton.style.color = "#fff";
+    uploadButton.style.setProperty("color", "#fff", "important");
+    uploadButton.disabled = false;
+  } else {
+    uploadButton.style.backgroundColor = "#A7A7A7"; // Grey color
+    uploadButton.style.color = "#fff";
+    uploadButton.style.setProperty("color", "#fff", "important");
+    uploadButton.disabled = true;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 const form = document.getElementById("uploadForm");
-const fileInput = document.getElementById("image");
-const titleInput = document.getElementById("title");
 
 // Get the authorization token from localStorage
 const token = localStorage.getItem("token");
@@ -38,11 +80,9 @@ form.addEventListener("submit", function (event) {
         const gallery = document.querySelector(".gallery");
         gallery.innerHTML = "";
         generateWorks();
-        form.reset(); 
-        resetUploadImgContainer();
+        form.reset();
         fileInput.value = "";
         resetModal();
-        updateButtonState();
       } else {
         // There was an error, show an error message
         alert("The form was not filled correctly.");

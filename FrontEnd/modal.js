@@ -108,6 +108,11 @@ addPictureButton.addEventListener("click", function () {
   });
 });
 
+
+
+//
+
+
 const previousBtn = document.getElementById("previousBtn");
 
 previousBtn.addEventListener("click", () => {
@@ -120,127 +125,7 @@ previousBtn.addEventListener("click", () => {
   document.querySelector(".modalContentButton").removeAttribute("style");
 
   document.querySelector(".modalContentFooter").removeAttribute("style");
-
-  generateWorks();
 });
-
-// Bouton Valider VERT/GRIS
-
-// Select the input elements
-let fileInput = document.getElementById("image");
-const titleInput = document.getElementById("title");
-const categorySelect = document.getElementById("category");
-const uploadButton = document.getElementById("uploadImg");
-
-// Add event listeners to the input elements
-fileInput.addEventListener("change", updateButtonState);
-titleInput.addEventListener("input", updateButtonState);
-categorySelect.addEventListener("change", updateButtonState);
-
-// Update the state of the upload button
-export function updateButtonState() {
-
-  console.log("updateButtonState called");
-  console.log("fileInput.value: ", fileInput.value);
-  console.log("titleInput.value: ", titleInput.value);
-  console.log("categorySelect.value: ", categorySelect.value);
-
-  if (
-    fileInput.value !== "" &&
-    titleInput.value !== "" &&
-    categorySelect.value !== ""
-  ) {
-    uploadButton.style.backgroundColor = "#1D6154"; // Green color
-    uploadButton.style.color = "#fff !important";
-    uploadButton.disabled = false;
-  } else {
-    uploadButton.style.backgroundColor = "#A7A7A7"; // Grey color
-    uploadButton.style.color = "#fff !important";
-    uploadButton.disabled = true;
-  }
-}
-
-// Image preview
-
-export function setUpFileInputListener() {
-  const input = document.getElementById("image");
-  if (input) {
-    input.addEventListener("change", function () {
-      const file = input.files[0];
-      const reader = new FileReader();
-
-      reader.addEventListener("load", function () {
-        const img = document.createElement("img");
-        img.src = reader.result;
-        img.style.maxWidth = "130px";
-        const container = document.querySelector(".uploadImgContainer");
-        container.innerHTML = "";
-        container.appendChild(img);
-      });
-      reader.readAsDataURL(file);
-    });
-  }
-}
-
-setUpFileInputListener();
-
-
-// Add this function to reset the uploadImgContainer to its default state
-export function resetUploadImgContainer() {
-  // Remove the existing image preview container
-  const container = document.querySelector(".uploadImgContainer");
-  container.parentNode.removeChild(container);
-
-  // Create a new empty image preview container
-  const newContainer = document.createElement("div");
-  newContainer.classList.add("uploadImgContainer");
-
-  newContainer.innerHTML = `
-    <div class="uploadImgContainerImg">
-      <i class="fa-regular fa-image"></i>
-    </div>
-    <div class="uploadPictureBtn">
-      <input type="file" id="image" value="+ Ajouter photo">
-    </div>
-    <div class="restrictionImg">
-      <p>jpg, png : 4mo max</p>
-    </div>
-  `;
-
-  // Replace the old container with the new one
-  const uploadContainer = document.querySelector(".uploadContainer");
-  uploadContainer.appendChild(newContainer);
-
-  // Add a new change event listener to the file input
-  const input = document.getElementById("image");
-  if (input) {
-    input.addEventListener("change", function () {
-      const file = input.files[0];
-      const reader = new FileReader();
-
-      reader.addEventListener("load", function () {
-        const img = document.createElement("img");
-        img.src = reader.result;
-        img.style.maxWidth = "130px";
-        const container = document.querySelector(".uploadImgContainer");
-        container.innerHTML = "";
-        container.appendChild(img);
-      });
-      reader.readAsDataURL(file);
-    });
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
 
 
 const modalCloseBtn = document.querySelector("#modal .closeBtn");

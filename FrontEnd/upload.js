@@ -1,12 +1,11 @@
 import { generateWorks } from "./projects.js";
 import { resetModal } from "./modal.js";
+import { resetUploadImgContainer } from "./modal.js";
+import { updateButtonState } from "./modal.js";
 
 const form = document.getElementById("uploadForm");
 const fileInput = document.getElementById("image");
 const titleInput = document.getElementById("title");
-
-const uploadImgContainer = document.querySelector(".uploadImgContainer");
-const originalUploadImgContainerContent = uploadImgContainer.innerHTML;
 
 // Get the authorization token from localStorage
 const token = localStorage.getItem("token");
@@ -39,9 +38,11 @@ form.addEventListener("submit", function (event) {
         const gallery = document.querySelector(".gallery");
         gallery.innerHTML = "";
         generateWorks();
-        form.reset();
+        form.reset(); 
+        resetUploadImgContainer();
+        fileInput.value = "";
         resetModal();
-        uploadImgContainer.innerHTML = originalUploadImgContainerContent;
+        updateButtonState();
       } else {
         // There was an error, show an error message
         alert("The form was not filled correctly.");

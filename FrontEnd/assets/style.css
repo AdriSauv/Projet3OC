@@ -593,3 +593,10 @@ select {
 	max-width: 100%;
 	max-height: 100%;
 }
+
+#error-msg {
+	color: red;
+	justify-content: center;
+	align-self: center;
+	margin-top: 5px;
+}

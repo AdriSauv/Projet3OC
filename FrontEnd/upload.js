@@ -5,6 +5,7 @@ const fileInput = document.getElementById('image');
 const titleInput = document.getElementById('title');
 const categorySelect = document.getElementById('category');
 const uploadButton = document.getElementById('uploadImg');
+const errorMsg = document.querySelector("#error-msg");
 
 
 fileInput.addEventListener('input', updateButtonState);
@@ -79,7 +80,7 @@ previewImg.addEventListener("load", function() {
 
 
 const form = document.getElementById("uploadForm");
-const errorMsg = document.querySelector("#error-msg");
+
 
 // Get the authorization token from localStorage
 const token = localStorage.getItem("token");
@@ -122,7 +123,6 @@ form.addEventListener("submit", function (event) {
         uploadPictureBtn.querySelector("input").style.display = "block";
         restrictionImg.style.display = "block";
         uploadButton.style.backgroundColor = "#A7A7A7"; // Grey color
-        uploadButton.disabled = true;
         resetModal();
       } else {
         // There was an error, show an error message
